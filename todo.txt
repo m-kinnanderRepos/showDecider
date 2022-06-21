@@ -1,0 +1,4 @@
+To Do:
+- Hard code or retreive list of all shows to create autocomplete.
+- Once a search happens and is successful, display data for randomly selected episode.
+- Finish setting up page. Get ride of bad data and make it my own. 
