@@ -1,4 +1,10 @@
 To Do:
 - Hard code or retreive list of all shows to create autocomplete.
+    - I could hard code the values. Create a lambda that calls the api endpoint that returns 
+        the list of all the shows epguides-api has. If that list is different than my current 
+        hard coded list, I replace the deployed code with the new list. I could also make this 
+        not automatic and have it create a new branch, make the change, create a PR to main, 
+        and then assign me as a reviewer. 
+    - I can use the `- const` ability of .pug for keeping the hard coded values. ?
 - Once a search happens and is successful, display data for randomly selected episode.
-- Finish setting up page. Get ride of bad data and make it my own. 
+- Finish setting up page. Get ride of bad data and make it my own. 1
