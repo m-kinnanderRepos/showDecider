@@ -46,7 +46,12 @@ function sayHello(nameOfShow) {
     options
   )
     .then((response) => response.json())
-    .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response)
+      console.log(response['1']['0']['title'])
+      console.log(Object.keys(response).length)
+      console.log(Object.keys(response['1']).length)
+    })
     .catch((err) => console.error(err));
 }
 

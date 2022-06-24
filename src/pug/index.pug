@@ -1,4 +1,16 @@
 doctype html
+// Font Awesome
+link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+  rel="stylesheet")
+  
+
+// Google Fonts
+link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
+  rel="stylesheet")
+  
+// MDB
+link(href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css", rel="stylesheet")
+
 html(lang='en')
 
     head
@@ -14,6 +26,7 @@ html(lang='en')
 
         // Core theme CSS (includes Bootstrap)
         link(href='css/styles.css', rel='stylesheet')
+        script(src="js/scripts.js")
 
     body#page-top
 
@@ -28,40 +41,40 @@ html(lang='en')
                         li.nav-item
                             a.nav-link(href='#about') About
                         li.nav-item
-                            a.nav-link(href='#services') Services
+                            a.nav-link(href='#service') Service
                         li.nav-item
                             a.nav-link(href='#github') Github
 
         // Header
         header.bg-primary.bg-gradient.text-white
             .container.px-4.text-center
-                h1.fw-bolder Welcome to Scrolling Nav
-                p.lead A functional Bootstrap 5 boilerplate for one page scrolling websites
-                a.btn.btn-lg.btn-light(href='#about') Start scrolling!
+                h1.fw-bolder Welcome to Show Decider
+                p.lead Type in what show you're watching, and we will pick an episode for you to watch!
+                a.btn.btn-lg.btn-light(href='#service') Enter Show!
 
-        // About section
-        section#about
+        //- // About section
+        //- section#about
+        //-     .container.px-4
+        //-         .row.gx-4.justify-content-center
+        //-             .col-lg-8
+        //-                 h2 About this page
+        //-                 p.lead
+        //-                     | This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:
+        //-                 ul
+        //-                     li Clickable nav links that smooth scroll to page sections
+        //-                     li Responsive behavior when clicking nav links perfect for a one page website
+        //-                     li
+        //-                         | Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar
+        //-                     li Minimal custom CSS so you are free to explore your own unique design options
+
+        // Service section
+        section#service.bg-light
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
-                        h2 About this page
-                        p.lead
-                            | This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:
-                        ul
-                            li Clickable nav links that smooth scroll to page sections
-                            li Responsive behavior when clicking nav links perfect for a one page website
-                            li
-                                | Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar
-                            li Minimal custom CSS so you are free to explore your own unique design options
-
-        // Services section
-        section#services.bg-light
-            .container.px-4
-                .row.gx-4.justify-content-center
-                    .col-lg-8
-                        h2 Services we offer
-                        p.lead
-                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.
+                        .input-group
+                            input(type="search" class="form-control rounded" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput")
+                            button(type="button" class="btn btn-outline-primary" onclick="sayHello(getElementById('searchInput').value)") Pick Episode
 
         // Contact section
         section#github
