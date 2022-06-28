@@ -21,15 +21,16 @@ html(lang='en')
         meta(name='author', content='')
 
         title Scrolling Nav - Start Bootstrap Template
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
 
         link(rel='icon', type='image/x-icon', href='assets/favicon.ico')
 
         // Core theme CSS (includes Bootstrap)
         link(href='css/styles.css', rel='stylesheet')
         script(src="js/scripts.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
     body#page-top
-
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
             .container.px-4
@@ -52,20 +53,6 @@ html(lang='en')
                 p.lead Type in what show you're watching, and we will pick an episode for you to watch!
                 a.btn.btn-lg.btn-light(href='#service') Enter Show!
 
-        //- // About section
-        //- section#about
-        //-     .container.px-4
-        //-         .row.gx-4.justify-content-center
-        //-             .col-lg-8
-        //-                 h2 About this page
-        //-                 p.lead
-        //-                     | This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:
-        //-                 ul
-        //-                     li Clickable nav links that smooth scroll to page sections
-        //-                     li Responsive behavior when clicking nav links perfect for a one page website
-        //-                     li
-        //-                         | Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar
-        //-                     li Minimal custom CSS so you are free to explore your own unique design options
 
         // Service section
         section#service.bg-light
@@ -73,8 +60,8 @@ html(lang='en')
                 .row.gx-4.justify-content-center
                     .col-lg-8
                         .input-group
-                            input(type="search" class="form-control rounded" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput")
-                            button(type="button" class="btn btn-outline-primary" onclick="sayHello(getElementById('searchInput').value)") Pick Episode
+                            input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
+                            button(type="button" class="btn btn-outline-primary" onclick="getShow(getElementById('searchInput').value)") Pick Episode
 
         // Contact section
         section#github
@@ -84,6 +71,25 @@ html(lang='en')
                         h2 Github
                         p.lead
                             | https://github.com/orgs/m-kinnanderRepos/repositories
+
+        //Scripts
+        script.
+            var $input = $(".typeahead");
+            $input.typeahead({
+                source: theShowNames,
+                autoSelect: true,
+            });
+
+            $input.change(function () {
+                var current = $input.typeahead("getActive");
+                matches = [];
+
+                if (current) {
+                    if (current.name == $input.val()) {
+                        matches.push(current.name);
+                    }
+                }
+            });
 
         // Footer
         footer.py-5.bg-dark
