@@ -12,10 +12,12 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Scrolling Nav - Start Bootstrap Template</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -46,8 +48,8 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <div class="input-group">
-                            <input class="form-control rounded" type="search" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" />
-                            <button class="btn btn-outline-primary" type="button" onclick="sayHello(getElementById('searchInput').value)">Pick Episode</button>
+                            <input class="form-control rounded typeahead" type="search" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead" />
+                            <button class="btn btn-outline-primary" type="button" onclick="getShow(getElementById('searchInput').value)">Pick Episode</button>
                         </div>
                     </div>
                 </div>
@@ -64,6 +66,25 @@
                 </div>
             </div>
         </section>
+        <!--Scripts-->
+        <script>
+            var $input = $('.typeahead');
+            $input.typeahead({
+                source: theShowNames,
+                autoSelect: true,
+            });
+
+            $input.change(function () {
+                var current = $input.typeahead('getActive');
+                matches = [];
+
+                if (current) {
+                    if (current.name == $input.val()) {
+                        matches.push(current.name);
+                    }
+                }
+            });
+        </script>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
