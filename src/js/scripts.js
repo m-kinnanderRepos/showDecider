@@ -43,11 +43,14 @@ function getShow(nameOfShow) {
   )
     .then((response) => response.json())
     .then((response) => {
-      console.log(response)
+      console.log(JSON.stringify(response))
+      // var thing1 = '{"1":[{"show":{"epguide_name":"bobandrose","title":"Bob & Rose","imdb_id":"tt0295071"},"season":1,"number":1,"title":"Episode 1","release_date":"2001-09-10"}]}'
+      // console.log(thing1)
       // console.log(response['1']['0']['title'])
       // console.log(Object.keys(response).length)
       // console.log(Object.keys(response).length)
       // console.log(Object.keys(response['1']).length)
+      console.log(Object.keys(response))
       numEpisodes = 0
       for (const [key, value] of Object.entries(response)) {
         console.log(`${key}: ${value}`);
