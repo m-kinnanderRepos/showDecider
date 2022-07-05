@@ -7,4 +7,4 @@ To Do:
         and then assign me as a reviewer. 
     - I can use the `- const` ability of .pug for keeping the hard coded values. ?
 - Once a search happens and is successful, display data for randomly selected episode.
-- Finish setting up page. Get ride of bad data and make it my own. 1
+- Finish setting up page. Get ride of bad data and make it my own.

@@ -25,6 +25,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
+var showData = {};
 
 function getShow(nameOfShow) {
   console.log(nameOfShow);
@@ -43,9 +44,46 @@ function getShow(nameOfShow) {
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      console.log(response['1']['0']['title'])
-      console.log(Object.keys(response).length)
-      console.log(Object.keys(response['1']).length)
+      // console.log(response['1']['0']['title'])
+      // console.log(Object.keys(response).length)
+      // console.log(Object.keys(response).length)
+      // console.log(Object.keys(response['1']).length)
+      numEpisodes = 0
+      for (const [key, value] of Object.entries(response)) {
+        console.log(`${key}: ${value}`);
+        console.log(Object.keys(value).length)
+        numEpisodes += Object.keys(value).length
+      }
+      console.log(numEpisodes)
+      showData = Math.floor(Math.random() * numEpisodes) -1
+      console.log(showData)
+
+      var indexNumber = 237
+      var currentIndex = 0
+      var currentNumShows = Object.keys(response['1']).length -1
+      var seasonPicker = 1
+      while(currentNumShows < indexNumber){
+        currentIndex = currentIndex + Object.keys(response[seasonPicker.toString()]).length
+        console.log("currentIndex now equals: " + currentIndex.toString())
+        seasonPicker = seasonPicker + 1
+        console.log("seasonPicker now equals: " + seasonPicker.toString())
+        currentNumShows = currentNumShows + Object.keys(response[seasonPicker.toString()]).length -1
+        console.log("currentNumShows now equals: " + currentNumShows.toString())
+      }
+
+
+      var episodePicker = 0
+      // debugger;
+      while(currentIndex + episodePicker < indexNumber){
+        console.log(currentIndex + episodePicker)
+        console.log(currentIndex + episodePicker <= indexNumber)
+        // debugger;
+        episodePicker = episodePicker + 1
+        console.log("episodePicker now equals: " + episodePicker.toString())
+      }
+
+      var episodeInfo = response[seasonPicker.toString()][episodePicker.toString()]
+      console.log(episodeInfo)
     })
     .catch((err) => console.error(err));
 }
