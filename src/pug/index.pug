@@ -27,8 +27,8 @@ html(lang='en')
 
         // Core theme CSS (includes Bootstrap)
         link(href='css/styles.css', rel='stylesheet')
-        script(src="js/getEpisodeFromJSON.js")
-        script(src="js/scripts.js")
+        script(type="module" src="js/getEpisodeFromJSON.js")
+        //- script(type="module" src="js/scripts.mjs")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
     body#page-top
@@ -62,7 +62,7 @@ html(lang='en')
                     .col-lg-8
                         .input-group
                             input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
-                            button(type="button" class="btn btn-outline-primary" onclick="getShow(getElementById('searchInput').value)") Pick Episode
+                            button(type="button" class="btn btn-outline-primary" id="thisThing") Pick Episode
 
         // Contact section
         section#github
@@ -74,7 +74,8 @@ html(lang='en')
                             | https://github.com/orgs/m-kinnanderRepos/repositories
 
         //Scripts
-        script.
+        script(type="module").
+            import {theShowNames} from '../js/scripts.js'
             var $input = $(".typeahead");
             $input.typeahead({
                 source: theShowNames,
@@ -83,7 +84,7 @@ html(lang='en')
 
             $input.change(function () {
                 var current = $input.typeahead("getActive");
-                matches = [];
+                var matches = [];
 
                 if (current) {
                     if (current.name == $input.val()) {
@@ -101,4 +102,4 @@ html(lang='en')
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
 
         // Core theme JS
-        script(src='js/scripts.js')
+        script(type="module" src='js/scripts.js')

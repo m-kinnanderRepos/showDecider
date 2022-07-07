@@ -1,5 +1,5 @@
-const getEpisode = require("../src/js/getEpisodeFromJSON");
-// import {getEpisode} from '../src/js/getEpisodeFromJSON.js'
+// const getEpisode = require("../src/js/getEpisodeFromJSON");
+import {getEpisode} from '../src/js/getEpisodeFromJSON.js'
 
 describe("getEpisode", function() {
     var thing2 = JSON.parse('{"2020":[{"show":{"epguide_name":"marthasvineyardmysteries","title":"Martha\'s Vineyard Mysteries","imdb_id":"tt10768536"},"season":2020,"number":1,"title":"A Beautiful Place to Die","release_date":"2020-01-12"},{"show":{"epguide_name":"marthasvineyardmysteries","title":"Martha\'s Vineyard Mysteries","imdb_id":"tt10768536"},"season":2020,"number":2,"title":"Riddled with Deceit","release_date":"2020-02-23"}],"2021":[{"show":{"epguide_name":"marthasvineyardmysteries","title":"Martha\'s Vineyard Mysteries","imdb_id":"tt10768536"},"season":2021,"number":1,"title":"Ships in the Night","release_date":"2021-01-17"},{"show":{"epguide_name":"marthasvineyardmysteries","title":"Martha\'s Vineyard Mysteries","imdb_id":"tt10768536"},"season":2021,"number":2,"title":"Poisoned in Paradise","release_date":"2021-05-16"}],"2022":[]}')

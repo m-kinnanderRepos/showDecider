@@ -16,8 +16,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <script src="js/getEpisodeFromJSON.js"></script>
-        <script src="js/scripts.js"></script>
+        <script type="module" src="js/getEpisodeFromJSON.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     </head>
     <body id="page-top">
@@ -50,7 +49,7 @@
                     <div class="col-lg-8">
                         <div class="input-group">
                             <input class="form-control rounded typeahead" type="search" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead" />
-                            <button class="btn btn-outline-primary" type="button" onclick="getShow(getElementById('searchInput').value)">Pick Episode</button>
+                            <button class="btn btn-outline-primary" type="button" id="thisThing">Pick Episode</button>
                         </div>
                     </div>
                 </div>
@@ -68,7 +67,8 @@
             </div>
         </section>
         <!--Scripts-->
-        <script>
+        <script type="module">
+            import { theShowNames } from '../js/scripts.js';
             var $input = $('.typeahead');
             $input.typeahead({
                 source: theShowNames,
@@ -77,7 +77,7 @@
 
             $input.change(function () {
                 var current = $input.typeahead('getActive');
-                matches = [];
+                var matches = [];
 
                 if (current) {
                     if (current.name == $input.val()) {
@@ -93,6 +93,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script type="module" src="js/scripts.js"></script>
     </body>
 </html>

@@ -1,15 +1,16 @@
 {
+    "type": "module",
     "title": "Scrolling Nav",
     "name": "startbootstrap-scrolling-nav",
     "version": "5.0.5",
     "scripts": {
         "build": "npm run clean && npm run build:pug && npm run build:scss && npm run build:scripts && npm run build:assets",
-        "build:assets": "node scripts/build-assets.js",
-        "build:pug": "node scripts/build-pug.js",
-        "build:scripts": "node scripts/build-scripts.js",
-        "build:scss": "node scripts/build-scss.js",
-        "clean": "node scripts/clean.js",
-        "start": "npm run build && node scripts/start.js",
+        "build:assets": "node scripts/build-assets.cjs",
+        "build:pug": "node scripts/build-pug.cjs",
+        "build:scripts": "node scripts/build-scripts.cjs",
+        "build:scss": "node scripts/build-scss.cjs",
+        "clean": "node scripts/clean.cjs",
+        "start": "npm run build && node scripts/start.cjs",
         "start:debug": "npm run build && node scripts/start-debug.js",
         "test": "jasmine"
     },

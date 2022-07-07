@@ -3,10 +3,10 @@
 const _ = require('lodash');
 const chokidar = require('chokidar');
 const upath = require('upath');
-const renderAssets = require('./render-assets');
-const renderPug = require('./render-pug');
-const renderScripts = require('./render-scripts');
-const renderSCSS = require('./render-scss');
+const renderAssets = require('./render-assets.cjs');
+const renderPug = require('./render-pug.cjs');
+const renderScripts = require('./render-scripts.cjs');
+const renderSCSS = require('./render-scss.cjs');
 
 const watcher = chokidar.watch('src', {
     persistent: true,

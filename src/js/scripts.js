@@ -1,8 +1,7 @@
 //
 // Scripts
 //
-// const getEpisode = require("./getEpisodeFromJSON");
-
+import {getEpisode} from './getEpisodeFromJSON.js'
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
   const mainNav = document.body.querySelector("#mainNav");
@@ -27,9 +26,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-// var showData = {};
+
+
+const button = document.getElementById("thisThing");
+
+button.addEventListener('click', event => {
+  getShow(document.getElementById("searchInput").value);
+});
+
 
 function getShow(nameOfShow) {
+  console.log("in getShow")
   console.log(nameOfShow);
   const options = {
     method: "GET",
@@ -47,55 +54,11 @@ function getShow(nameOfShow) {
     .then((response) => {
       var episode = getEpisode(response)
       console.log(episode)
-      // console.log(JSON.stringify(response))
-      // var thing1 = '{"1":[{"show":{"epguide_name":"bobandrose","title":"Bob & Rose","imdb_id":"tt0295071"},"season":1,"number":1,"title":"Episode 1","release_date":"2001-09-10"}]}'
-      // console.log(thing1)
-      // console.log(response['1']['0']['title'])
-      // console.log(Object.keys(response).length)
-      // console.log(Object.keys(response).length)
-      // console.log(Object.keys(response['1']).length)
-    //   console.log(Object.keys(response))
-    //   numEpisodes = 0
-    //   for (const [key, value] of Object.entries(response)) {
-    //     console.log(`${key}: ${value}`);
-    //     console.log(Object.keys(value).length)
-    //     numEpisodes += Object.keys(value).length
-    //   }
-    //   console.log(numEpisodes)
-    //   showData = Math.floor(Math.random() * numEpisodes) -1
-    //   console.log(showData)
-
-    //   var indexNumber = 237
-    //   var currentIndex = 0
-    //   var currentNumShows = Object.keys(response['1']).length -1
-    //   var seasonPicker = 1
-    //   while(currentNumShows < indexNumber){
-    //     currentIndex = currentIndex + Object.keys(response[seasonPicker.toString()]).length
-    //     console.log("currentIndex now equals: " + currentIndex.toString())
-    //     seasonPicker = seasonPicker + 1
-    //     console.log("seasonPicker now equals: " + seasonPicker.toString())
-    //     currentNumShows = currentNumShows + Object.keys(response[seasonPicker.toString()]).length -1
-    //     console.log("currentNumShows now equals: " + currentNumShows.toString())
-    //   }
-
-
-    //   var episodePicker = 0
-    //   // debugger;
-    //   while(currentIndex + episodePicker < indexNumber){
-    //     console.log(currentIndex + episodePicker)
-    //     console.log(currentIndex + episodePicker <= indexNumber)
-    //     // debugger;
-    //     episodePicker = episodePicker + 1
-    //     console.log("episodePicker now equals: " + episodePicker.toString())
-    //   }
-
-    //   var episodeInfo = response[seasonPicker.toString()][episodePicker.toString()]
-    //   console.log(episodeInfo)
     })
     .catch((err) => console.error(err));
 }
 
-var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',
+export var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',
 'artsnight','impulse','teacher','tooningoutthenews','hollywooddarlings','kampkoral','spiderman_2017',
 'sanctuary','retroreport','supermanandlois','intothenight','amosandandy','cleaner_2021',
 'gameofthrones','angel_1960','tigtone','starwarsthebadbatch','barbara','astroboy_1980',
