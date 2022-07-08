@@ -27,21 +27,19 @@ html(lang='en')
 
         // Core theme CSS (includes Bootstrap)
         link(href='css/styles.css', rel='stylesheet')
-        script(type="module" src="js/getEpisodeFromJSON.js")
-        //- script(type="module" src="js/scripts.mjs")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
     body#page-top
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
             .container.px-4
-                a.navbar-brand(href='#page-top') Start Bootstrap
+                a.navbar-brand(href='#page-top') We compute, so you can watch
                 button.navbar-toggler(type='button' data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
                     span.navbar-toggler-icon
                 #navbarResponsive.collapse.navbar-collapse
                     ul.navbar-nav.ms-auto
-                        li.nav-item
-                            a.nav-link(href='#about') About
+                        //- li.nav-item
+                        //-     a.nav-link(href='#about') About
                         li.nav-item
                             a.nav-link(href='#service') Service
                         li.nav-item
@@ -63,6 +61,8 @@ html(lang='en')
                         .input-group
                             input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
                             button(type="button" class="btn btn-outline-primary" id="thisThing") Pick Episode
+            .container.px-4(id="episodeTable")
+
 
         // Contact section
         section#github

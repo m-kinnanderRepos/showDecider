@@ -2,6 +2,8 @@
 // Scripts
 //
 import {getEpisode} from './getEpisodeFromJSON.js'
+import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from './tableCreation.js'
+
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
   const mainNav = document.body.querySelector("#mainNav");
@@ -52,11 +54,23 @@ function getShow(nameOfShow) {
   )
     .then((response) => response.json())
     .then((response) => {
-      var episode = getEpisode(response)
-      console.log(episode)
+      var episodeInfo = getEpisode(response)
+      console.log(episodeInfo)
+      if (episodeInfo === undefined){
+        createErrorTable()
+      }
+      else if (("title" in episodeInfo) && ("season" in episodeInfo) && ("number" in episodeInfo)){
+        createTableWithEpisode(episodeInfo)
+      }
+      else createUnknownDataTable()
+      
     })
     .catch((err) => console.error(err));
 }
+
+
+
+
 
 export var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',
 'artsnight','impulse','teacher','tooningoutthenews','hollywooddarlings','kampkoral','spiderman_2017',
