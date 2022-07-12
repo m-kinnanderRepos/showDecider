@@ -6,6 +6,9 @@
 //
 // Scripts
 //
+import {getEpisode} from './getEpisodeFromJSON.js'
+import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from './tableCreation.js'
+
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
   const mainNav = document.body.querySelector("#mainNav");
@@ -31,7 +34,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 
+
+const button = document.getElementById("thisThing");
+
+button.addEventListener('click', event => {
+  getShow(document.getElementById("searchInput").value);
+});
+
+
 function getShow(nameOfShow) {
+  console.log("in getShow")
   console.log(nameOfShow);
   const options = {
     method: "GET",
@@ -47,15 +59,25 @@ function getShow(nameOfShow) {
   )
     .then((response) => response.json())
     .then((response) => {
-      console.log(response)
-      console.log(response['1']['0']['title'])
-      console.log(Object.keys(response).length)
-      console.log(Object.keys(response['1']).length)
+      var episodeInfo = getEpisode(response)
+      console.log(episodeInfo)
+      if (episodeInfo === undefined){
+        createErrorTable()
+      }
+      else if (("title" in episodeInfo) && ("season" in episodeInfo) && ("number" in episodeInfo)){
+        createTableWithEpisode(episodeInfo)
+      }
+      else createUnknownDataTable()
+      
     })
     .catch((err) => console.error(err));
 }
 
-var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',
+
+
+
+
+export var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',
 'artsnight','impulse','teacher','tooningoutthenews','hollywooddarlings','kampkoral','spiderman_2017',
 'sanctuary','retroreport','supermanandlois','intothenight','amosandandy','cleaner_2021',
 'gameofthrones','angel_1960','tigtone','starwarsthebadbatch','barbara','astroboy_1980',

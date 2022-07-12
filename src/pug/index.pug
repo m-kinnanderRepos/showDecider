@@ -27,20 +27,19 @@ html(lang='en')
 
         // Core theme CSS (includes Bootstrap)
         link(href='css/styles.css', rel='stylesheet')
-        script(src="js/scripts.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
     body#page-top
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
             .container.px-4
-                a.navbar-brand(href='#page-top') Start Bootstrap
+                a.navbar-brand(href='#page-top') We compute, so you can watch
                 button.navbar-toggler(type='button' data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
                     span.navbar-toggler-icon
                 #navbarResponsive.collapse.navbar-collapse
                     ul.navbar-nav.ms-auto
-                        li.nav-item
-                            a.nav-link(href='#about') About
+                        //- li.nav-item
+                        //-     a.nav-link(href='#about') About
                         li.nav-item
                             a.nav-link(href='#service') Service
                         li.nav-item
@@ -61,7 +60,9 @@ html(lang='en')
                     .col-lg-8
                         .input-group
                             input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
-                            button(type="button" class="btn btn-outline-primary" onclick="getShow(getElementById('searchInput').value)") Pick Episode
+                            button(type="button" class="btn btn-outline-primary" id="thisThing") Pick Episode
+            .container.px-4(id="episodeTable")
+
 
         // Contact section
         section#github
@@ -73,7 +74,8 @@ html(lang='en')
                             | https://github.com/orgs/m-kinnanderRepos/repositories
 
         //Scripts
-        script.
+        script(type="module").
+            import {theShowNames} from '../js/scripts.js'
             var $input = $(".typeahead");
             $input.typeahead({
                 source: theShowNames,
@@ -82,7 +84,7 @@ html(lang='en')
 
             $input.change(function () {
                 var current = $input.typeahead("getActive");
-                matches = [];
+                var matches = [];
 
                 if (current) {
                     if (current.name == $input.val()) {
@@ -100,4 +102,4 @@ html(lang='en')
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
 
         // Core theme JS
-        script(src='js/scripts.js')
+        script(type="module" src='js/scripts.js')
