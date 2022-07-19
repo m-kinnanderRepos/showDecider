@@ -20,7 +20,7 @@ html(lang='en')
         meta(name='description', content='')
         meta(name='author', content='')
 
-        title Scrolling Nav - Start Bootstrap Template
+        title Show Decider
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
 
         link(rel='icon', type='image/x-icon', href='assets/favicon.ico')
@@ -38,8 +38,8 @@ html(lang='en')
                     span.navbar-toggler-icon
                 #navbarResponsive.collapse.navbar-collapse
                     ul.navbar-nav.ms-auto
-                        //- li.nav-item
-                        //-     a.nav-link(href='#about') About
+                        li.nav-item
+                            a.nav-link(href='#about') About
                         li.nav-item
                             a.nav-link(href='#service') Service
                         li.nav-item
@@ -64,14 +64,24 @@ html(lang='en')
             .container.px-4(id="episodeTable")
 
 
+        // About section
+        section#about
+            .container.px-4
+                .row.gx-4.justify-content-center
+                    .col-lg-8
+                        h2 About
+                        p.lead
+                            | I came up with this idea when I wanted to watch a random episode of Rick and Morty
+
+
         // Contact section
-        section#github
+        section#github.bg-light
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
                         h2 Github
                         p.lead
-                            | https://github.com/orgs/m-kinnanderRepos/repositories
+                            a(href='//github.com/m-kinnanderRepos') Take a look at the code and other projects of mine
 
         //Scripts
         script(type="module").
@@ -96,7 +106,7 @@ html(lang='en')
         // Footer
         footer.py-5.bg-dark
             .container.px-4
-                p.m-0.text-center.text-white Copyright &copy; Your Website 2022
+                p.m-0.text-center.text-white Copyright &copy; Show Decider 2022
 
         // Bootstrap core JS
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')

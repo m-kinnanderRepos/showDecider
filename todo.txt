@@ -6,7 +6,7 @@ To Do:
         not automatic and have it create a new branch, make the change, create a PR to main, 
         and then assign me as a reviewer. 
 - Once a search happens and is successful, display data for randomly selected episode. DONE
-- Finish setting up page. Get ride of bad data and make it my own.
+- Finish setting up page. Get ride of bad data and make it my own. DONE
 - Better handling of `404 (Not Found)`.
 - create unit tests for tableCreation.js. DONE
 - create api call in a lambda (to keep api key secret).
@@ -15,3 +15,4 @@ To Do:
 - get a domain name from go daddy.
 - deploy. 
 - set up repo to go public.
+- update readme. 
