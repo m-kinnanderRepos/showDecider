@@ -1,0 +1,30 @@
+Guide I'm using: 
+    https://medium.com/@kyle.galbraith/how-to-host-a-website-on-s3-without-getting-lost-in-the-sea-e2b82aa6cd38
+
+Command Line:
+    currently in showDecider root.
+    created virtualenv `showDecider`.
+    activated virtualenv `showDecider`.
+    run `pip3 install awsscli`.
+
+Creating bucket from UI. This could be done via cdk. (version 2 of this project)
+    Created bucket www.idkwhattowatch.com. 
+
+Created basic index.html and error.html files.
+
+Run `aws s3 website s3://www.idkwhattowatch.com/ --index-document index.html --error-document error.html`
+(this didn't upload the index.html file and error.html file to my bucket. Maybe files need full path?)
+(Could run this command without the --index and --error. Then copy each file to bucket using `aws s3 cp` command from below)
+(Doesn't matter these two files aren't there as I upload all files from dist soon after but good for intial testing and checking to see if bucket is public. 
+can add index.html file through UI easy enough to test after put-bucket-policy command)
+
+Created policy.json.
+
+Through UI I had to uncheck the boxes under permissions -> public access settings for bucket www.idkwhattowatch.com
+
+Run `aws s3api put-bucket-policy --bucket www.idkwhattowatch.com --policy file://policy.json`
+
+Run `aws s3 cp full_path_to/showDecider/dist s3://www.idkwhattowatch.com/ --recursive`
+
+
+For lambda to allow requests only from domain: go to lambda function > configuration > function url > add bucket url (http://www.idkwhattowatch.com.s3-website.us-east-2.amazonaws.com) to Allow Origin 
