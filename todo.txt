@@ -9,10 +9,12 @@ To Do:
 - Finish setting up page. Get ride of bad data and make it my own. DONE
 - Better handling of `404 (Not Found)`.
 - create unit tests for tableCreation.js. DONE
-- create api call in a lambda (to keep api key secret).
-- call lambda.
-- create aws bucket for hosting.
+- create api call in a lambda (to keep api key secret). DONE
+- call lambda. DONE
+- create aws bucket for hosting. DONE
 - get a domain name from go daddy.
-- deploy. 
+- secure lambda by domain call. DONE
+- deploy. DONE
 - set up repo to go public.
 - update readme. 
+- create bucket via IAC. 

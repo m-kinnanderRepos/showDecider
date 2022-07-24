@@ -1,8 +1,8 @@
 //
 // Scripts
 //
-import {getEpisode} from './getEpisodeFromJSON.js'
-import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from './tableCreation.js'
+import {getEpisode} from '/js/getEpisodeFromJSON.js'
+import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from '/js/tableCreation.js'
 
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
@@ -40,18 +40,8 @@ button.addEventListener('click', event => {
 function getShow(nameOfShow) {
   console.log("in getShow")
   console.log(nameOfShow);
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "4b76ce3031mshc0abcd2f11a8749p10bb4cjsn1571e685dddf",
-      "X-RapidAPI-Host": "frecar-epguides-api-v1.p.rapidapi.com",
-    },
-  };
-
-  fetch(
-    "https://frecar-epguides-api-v1.p.rapidapi.com/" + nameOfShow + "/",
-    options
-  )
+  
+  fetch("https://y5rwgedca54zx3gwodcxanl47u0znhns.lambda-url.us-east-2.on.aws?show=" + nameOfShow)
     .then((response) => response.json())
     .then((response) => {
       var episodeInfo = getEpisode(response)
