@@ -16,5 +16,5 @@ To Do:
 - secure lambda by domain call. DONE
 - deploy. DONE
 - set up repo to go public.
-- update readme. 
+- update readme. DONE
 - create bucket via IAC. 
