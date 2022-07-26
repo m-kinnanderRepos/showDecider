@@ -12,9 +12,9 @@ To Do:
 - create api call in a lambda (to keep api key secret). DONE
 - call lambda. DONE
 - create aws bucket for hosting. DONE
-- get a domain name from go daddy.
+- get a domain name from go daddy. DONE (idkyoupick.com)
 - secure lambda by domain call. DONE
 - deploy. DONE
 - set up repo to go public.
-- update readme. 
+- update readme. DONE
 - create bucket via IAC. 
