@@ -23,6 +23,7 @@ Created policy.json.
 Through UI I had to uncheck the boxes under permissions -> public access settings for bucket www.idkwhattowatch.com
 
 Run `aws s3api put-bucket-policy --bucket www.idkwhattowatch.com --policy file://policy.json`
+(update policy.json file. `"Resource":` needs to equal the arn value for you bucket.)
 
 Run `aws s3 cp full_path_to/showDecider/dist s3://www.idkwhattowatch.com/ --recursive`
 
