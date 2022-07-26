@@ -64,7 +64,8 @@ npm test
 
 * Look at the file stepsForBucketAndCodeDeploy.txt for help on creating an S3 bucket and deploying project to bucket via command line.
 * I don't think index.html and error.html in the root directory are needed.
-* I may use the data in TestData.txt, I'm not sure yet. 
+* I may use the data in TestData.txt, I'm not sure yet.
+* I like having IAC. I will add a folder for making the S3 bucket, the code for the lambda, and deploying it from command line with cdk. 
 
 ## [epguides-api](https://rapidapi.com/frecar/api/epguides-api/)
 * api endpoint I call within my lambda function
