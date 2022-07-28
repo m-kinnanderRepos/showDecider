@@ -18,3 +18,5 @@ To Do:
 - set up repo to go public.
 - update readme. DONE
 - create bucket via IAC. 
+- create lambda via IAC. 
+- create error.pug. 
