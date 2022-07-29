@@ -73,3 +73,18 @@ Enjoy!
 https://karan-brar.medium.com/getting-started-with-aws-cdk-bf33d864fcce
 
 https://karan-brar.medium.com/getting-started-with-aws-cdk-bf33d864fcce
+
+https://docs.aws.amazon.com/cdk/api/v2/python/aws_cdk.aws_iam/PolicyDocument.html#aws_cdk.aws_iam.PolicyDocument
+
+https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_s3-readme.html
+
+https://serverlessland.com/patterns/apigw-http-lambda-cdk
+
+
+pip install aws-cdk.aws-apigatewayv2-alpha
+
+pip install aws_cdk.aws_apigatewayv2_integrations_alpha
+
+
+
+** this one. find the function url. 

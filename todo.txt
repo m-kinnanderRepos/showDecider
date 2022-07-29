@@ -15,7 +15,7 @@ To Do:
 - get a domain name from go daddy. DONE (idkyoupick.com)
 - secure lambda by domain call. DONE
 - deploy. DONE
-- set up repo to go public.
+- set up repo to go public. DONE
 - update readme. DONE
 - create bucket via IAC. 
 - create lambda via IAC. 
