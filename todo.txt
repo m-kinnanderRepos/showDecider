@@ -17,6 +17,7 @@ To Do:
 - deploy. DONE
 - set up repo to go public. DONE
 - update readme. DONE
-- create bucket via IAC. 
-- create lambda via IAC. 
+- create bucket via IAC. DONE
+- create lambda via IAC. DONE
 - create error.pug. 
+- create helpfullinks document. 
