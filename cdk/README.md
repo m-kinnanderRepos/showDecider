@@ -38,6 +38,7 @@ pip install --target=package -r requirements.txt
  - I can't figure out how to set a Function URL to the lambda through cdk. To do this through UI:
         - Go to your labmda function > Configuration > Function URL > Create function URL.
         - Set Auth type to NONE, check the box for Configure cross-origin resource sharing (CORS), add your s3 bucket url to Allow origin.
+        - Find s3 bucket url by going to your bucket > Properties > scroll to bottom and find Static website hosting.
         - (This makes your lambda function public and protects your lambda function by only accepting calls from your website.)
 
 

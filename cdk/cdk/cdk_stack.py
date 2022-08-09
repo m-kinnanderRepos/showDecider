@@ -48,7 +48,8 @@ class showDeciderStack(Stack):
         myBucket = s3.Bucket(self, 'MyFirstBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket',
             public_read_access=True,
             removal_policy=cdk.RemovalPolicy.DESTROY,
-            website_index_document="index.html"
+            website_index_document="index.html",
+            auto_delete_objects=True
         ) 
 
         deployment = s3deploy.BucketDeployment(self, "deployStaticWebsite", 
