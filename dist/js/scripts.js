@@ -46,7 +46,7 @@ function getShow(nameOfShow) {
   console.log("in getShow")
   console.log(nameOfShow);
   
-  fetch("https://y5rwgedca54zx3gwodcxanl47u0znhns.lambda-url.us-east-2.on.aws?show=" + nameOfShow)
+  fetch("https://3enh6vliveksypyxy2epjoizmq0jvfne.lambda-url.us-east-2.on.aws?show=" + nameOfShow)
     .then((response) => response.json())
     .then((response) => {
       var episodeInfo = getEpisode(response)

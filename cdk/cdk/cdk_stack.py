@@ -7,11 +7,9 @@ from aws_cdk import (
     aws_s3 as s3,
     aws_iam as iam,
     Resource,
-    CfnOutput
+    CfnOutput,
+    aws_s3_deployment as s3deploy
 )
-# import aws_cdk.aws_apigatewayv2_alpha as _apigw
-# import aws_cdk.aws_apigatewayv2_integrations_alpha as _integrations
-
 
 class showDeciderStack(Stack):
 
@@ -37,54 +35,23 @@ class showDeciderStack(Stack):
             timeout=cdk.Duration.minutes(5)
         )
 
-        fnUrl = my_lambda.add_function_url(
-            auth_type=_lambda.FunctionUrlAuthType.NONE,
-            # allowed_origins= ['http://localhost:3000']
-        )
-
-        # CfnOutput(self, 'TheUrl', {
-        #     value: fnUrl.url,
-        # })
-
-        # # Create the HTTP API with CORS
-        # http_api = _apigw.HttpApi(
-        #     self, "MyHttpApi",
-        #     cors_preflight=_apigw.CorsPreflightOptions(
-        #         allow_methods=[_apigw.CorsHttpMethod.GET],
-        #         allow_origins=["http://localhost:3000"],
-        #         max_age=Duration.days(10),
-        #     )
+        # I can't get this to work. Take a look at the file stepsForBucketAndCodeDeploy.txt for 
+        # info on setting up the Function Url for your lambda through the UI. 
+        # my_lambda.addFunctionUrl(self, "functionrul",
+        #     auth_type=_lambda.FunctionUrlAuthType.NONE,
+        #     allowed_origins= ['http://localhost:3000']
         # )
-
-        # # Add a route to GET /
-        # http_api.add_routes(
-        #     path="/",
-        #     methods=[_apigw.HttpMethod.GET],
-        #     integration=_integrations.HttpLambdaIntegration("LambdaProxyIntegration", handler=my_lambda),
-        # )
-
-        # # Outputs
-        # CfnOutput(self, "API Endpoint", description="API Endpoint", value=http_api.api_endpoint)
 
         
 
-        # my_custom_policy = iam.PolicyStatement(
-        #     iam.PolicyStatement(
-        #         actions=["kms:Create*", "kms:Describe*", "kms:Enable*", "kms:List*", "kms:Put*"
-        #         ],
-        #         principals=[iam.AccountRootPrincipal()],
-        #         resources=["*"]
-        #     )
-        # )
 
+        myBucket = s3.Bucket(self, 'MyFirstBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket',
+            public_read_access=True,
+            removal_policy=cdk.RemovalPolicy.DESTROY,
+            website_index_document="index.html"
+        ) 
 
-        myBucket = s3.Bucket(self, 'MyFirstBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket') 
-
-        myBucket.add_to_resource_policy(    #Grant read access to everyone in your account
-            iam.PolicyStatement(
-                    actions=['s3:GetObject'],
-                    resources=[myBucket.arn_for_objects('*')],
-                    principals=[iam.AccountRootPrincipal()]
-            )
-        )
-
+        deployment = s3deploy.BucketDeployment(self, "deployStaticWebsite", 
+            sources=[s3deploy.Source.asset("../dist")],
+            destination_bucket=myBucket
+        )      

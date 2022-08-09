@@ -1,58 +1,25 @@
 
-# Welcome to your CDK Python project!
+# Welcome to the CDK portion of the project!
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`cdk_stack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+## Installation
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Run this project in its own virtual environment. Look into venv or pyenv.
+**Make sure you are in the first `cdk` directory of application.**
 
-This project is set up like a standard Python project.  The initialization process also creates
-a virtualenv within this project, stored under the .venv directory.  To create the virtualenv
-it assumes that there is a `python3` executable in your path with access to the `venv` package.
-If for any reason the automatic creation of the virtualenv fails, you can create the virtualenv
-manually once the init process completes.
+You need to install the AWS CDK toolkit
+```bash
+npm install aws-cdk
+``` 
 
-To manually create a virtualenv on MacOS and Linux:
-
-```
-$ python3 -m venv .venv
+You also need to pip install software from requirements.txt.
+```bash
+pip install -r requirements.txt
 ```
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
+AND also pip install software from requirements.txt to package to be used in lambda
+```bash
+pip install --target=package -r requirements.txt
 ```
-$ source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-You can now begin exploring the source code, contained in the hello directory.
-There is also a very trivial test included that can be run like this:
-
-```
-$ pytest
-```
-
-To add additional dependencies, for example other CDK libraries, just add to
-your requirements.txt file and rerun the `pip install -r requirements.txt`
-command.
 
 ## Useful commands
 
@@ -62,29 +29,19 @@ command.
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
 
-Enjoy!
+
+## Notes
+
+* First run of `cdk deploy`:
+ - On first running `cdk deploy` the code in the `dist` folder should be added into your bucket.
+ - After running `cdk deploy`, you need to update `Your_lambda_URL` within `src/js/scrips.js`.
+ - I can't figure out how to set a Function URL to the lambda through cdk. To do this through UI:
+        - Go to your labmda function > Configuration > Function URL > Create function URL.
+        - Set Auth type to NONE, check the box for Configure cross-origin resource sharing (CORS), add your s3 bucket url to Allow origin.
+        - (This makes your lambda function public and protects your lambda function by only accepting calls from your website.)
 
 
 
-******* when creating this from scratch, you need to create the folder __pycache__ inside of the newly created folder for your lambda.
-        If you don't, you will get an error in lambda saying showDeciderAPI does not have access to requests. *something like that.
 
 
-https://karan-brar.medium.com/getting-started-with-aws-cdk-bf33d864fcce
-
-https://karan-brar.medium.com/getting-started-with-aws-cdk-bf33d864fcce
-
-https://docs.aws.amazon.com/cdk/api/v2/python/aws_cdk.aws_iam/PolicyDocument.html#aws_cdk.aws_iam.PolicyDocument
-
-https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_s3-readme.html
-
-https://serverlessland.com/patterns/apigw-http-lambda-cdk
-
-
-pip install aws-cdk.aws-apigatewayv2-alpha
-
-pip install aws_cdk.aws_apigatewayv2_integrations_alpha
-
-
-
-** this one. find the function url. 
+### When creating cdk project from scratch, you need to create the folder __pycache__ inside of the newly created folder for your lambda. If you don't, you will get an error in lambda saying showDeciderAPI does not have access to requests. *something like that.
