@@ -7,24 +7,6 @@ Show decider is a static website that decides what epdisode to watch given a sho
 Run this project in its own virtual environment. Look into venv or pyenv.
 **Make sure you are in the root directory of application.**
 
-<!-- You need to install the AWS CDK toolkit
-
-```bash
-npm install aws-cdk
-``` -->
-<!-- 
-You also need to pip install software from requirements.txt.
-
-```bash
-pip install -r requirements.txt
-```
-
-AND also pip install software from requirements.txt to package to be used in lambda
-
-```bash
-pip install --target=package -r requirements.txt
-``` -->
-
 #### npm Scripts
 
 * `npm install` installs all modules and dependencies listed in the package.json file
