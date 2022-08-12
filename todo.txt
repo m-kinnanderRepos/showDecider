@@ -19,5 +19,6 @@ To Do:
 - update readme. DONE
 - create bucket via IAC. DONE
 - create lambda via IAC. DONE
-- create error.pug. 
+- create error.pug. DONE
 - create helpfullinks document. 
+- add ads to page. DONE
