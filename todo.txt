@@ -20,5 +20,5 @@ To Do:
 - create bucket via IAC. DONE
 - create lambda via IAC. DONE
 - create error.pug. DONE
-- create helpfullinks document. 
+- create helpfullinks document. DONE
 - add ads to page. DONE
