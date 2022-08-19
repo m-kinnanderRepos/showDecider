@@ -26,8 +26,7 @@ showDeciddr is a website that will pick a random episode of a show for you to wa
 
 ## [MD Bootstrap autocomplete component](https://mdbootstrap.com/docs/standard/forms/autocomplete/)
 
-## [Had issues using JS from another file](https://stackoverflow.com/questions/1140402/how-to-add-jquery-in-js-file)
-## [Module is not defined error help](https://bobbyhadz.com/blog/javascript-module-is-not-defined-in-es-module-scope#:~:text=The%20error%20%22Module%20is%20not,e.g.%20export%20const%20num%20%3D%2042%20.)
+## [Had issues using JS from another file](https://stackoverflow.com/questions/1140402/how-to-add-jquery-in-js-file) && [Module is not defined error help](https://bobbyhadz.com/blog/javascript-module-is-not-defined-in-es-module-scope#:~:text=The%20error%20%22Module%20is%20not,e.g.%20export%20const%20num%20%3D%2042%20.)
 I was attempting to use E5 on some js files that didn't have it. It was an issue that I'm still not fully comprehending. Eventually, errors from console helped me. You can see in the `scripts` folder that those js files end in `.cjs`. Those are common js files that didn't need E5.
 
 ## [Jasmine unit testing documentation](https://jasmine.github.io/pages/getting_started.html)
