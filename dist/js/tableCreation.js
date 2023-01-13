@@ -38,7 +38,7 @@ export function createTableWithEpisode(episodeInfo) {
     let tableDataDiv = document.getElementById("episodeTable");
   
     const headerList = ['Title', 'Season', 'Episode']
-    const rowData = [[episodeInfo['title'], episodeInfo['season'], episodeInfo['number']]]
+    const rowData = [[episodeInfo['name'], episodeInfo['season'], episodeInfo['episode']]]
     const table = createTable(headerList, rowData)
   
     tableDataDiv.innerHTML = table;
@@ -51,9 +51,10 @@ export function createTableWithEpisode(episodeInfo) {
     let tableDataDiv = document.getElementById("episodeTable");
   
     const headerList = ['', 'Show Data Not Found']
-    const rowData = [['1', 'Try searching again. Sometimes we need to think twice.'],
-                    ['2', 'Try removing spaces from title and search again.'],
-                    ['3', 'Data for this show may not exist.']]
+    const rowData = [['1', 'Try adding `the` to title and search again.'],
+                    ['2', 'Try removing `the` from title and search again.'],
+                    ['3', 'Make sure there are spaces between words and search again.'],
+                    ['4', 'Data for this show may not exist.']]
     const table = createTable(headerList, rowData)
   
     tableDataDiv.innerHTML = table;
