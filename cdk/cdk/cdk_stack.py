@@ -8,8 +8,14 @@ from aws_cdk import (
     aws_iam as iam,
     Resource,
     CfnOutput,
-    aws_s3_deployment as s3deploy
+    aws_s3_deployment as s3deploy,
+    aws_events as events,
+    aws_events_targets as targets
 )
+# from aws_solutions_constructs.aws_eventbridge_lambda import EventbridgeToLambda, EventbridgeToLambdaProps
+from aws_solutions_constructs.aws_lambda_eventbridge import LambdaToEventbridge
+
+
 
 class showDeciderStack(Stack):
 
@@ -55,4 +61,38 @@ class showDeciderStack(Stack):
         deployment = s3deploy.BucketDeployment(self, "deployStaticWebsite", 
             sources=[s3deploy.Source.asset("../dist")],
             destination_bucket=myBucket
-        )      
+        )
+
+
+        
+        # LambdaToEventbridge(self, 'LambdaToEventbridgePattern',
+        #             lambda_function_props=_lambda.FunctionProps(
+        #                 code=_lambda.Code.from_asset('lambda'),
+        #                 runtime=_lambda.Runtime.PYTHON_3_9,
+        #                 handler='showDeciderAPI.handler',
+        #             ),
+        #             # event_bus_props=events.RuleProps(schedule=events.Schedule.rate(
+        #             #         Duration.minutes(5))),
+        #             # event_bus_props=events.EventBusProps()
+                    
+        #             ),
+                    
+
+                    # {'year': "*",'month': "*",'day': "1",'hour': "1",'minute': "1"}
+
+
+        
+        eventRule = events.Rule(self, 'scheduleRule', 
+        schedule= events.Schedule.expression("cron(* * * * ? *)"),
+        )
+        # events.Schedule.expression("cron(0 0 * * ? *)")
+
+        eventRule.add_target(targets.LambdaFunction(my_lambda))
+
+
+        # EventbridgeToLambda(self, 'test-eventbridge-lambda',
+        #                     lambda_function_props=my_lambda,
+        #                     event_rule_props=events.RuleProps(
+        #                         schedule=events.Schedule.cron(
+        #                             Duration.minutes(5))
+        #                     ))
