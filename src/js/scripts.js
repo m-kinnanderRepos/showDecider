@@ -38,18 +38,21 @@ button.addEventListener('click', event => {
 
 
 function getShow(nameOfShow) {
-  console.log("in getShow")
-  console.log(nameOfShow);
+  // console.log("in getShow")
+  // console.log(nameOfShow);
+  var newName = nameOfShow.replace(/ /g,"-")
+  // console.log(newName)
   
-  fetch("Your_lambda_URL?show=" + nameOfShow)
+  fetch("https://www.episodate.com/api/show-details?q=" + newName)
     .then((response) => response.json())
     .then((response) => {
+      console.log(response)
       var episodeInfo = getEpisode(response)
       console.log(episodeInfo)
-      if (episodeInfo === undefined){
+      if (episodeInfo === undefined || episodeInfo.length == 0){
         createErrorTable()
       }
-      else if (("title" in episodeInfo) && ("season" in episodeInfo) && ("number" in episodeInfo)){
+      else if (("name" in episodeInfo) && ("season" in episodeInfo) && ("episode" in episodeInfo)){
         createTableWithEpisode(episodeInfo)
       }
       else createUnknownDataTable()

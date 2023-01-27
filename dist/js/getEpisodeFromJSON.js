@@ -1,10 +1,13 @@
 export function getEpisode(responseData, indexNumber) {
   var obj = Object.values(responseData);
-  const flatmapResponseData = obj.flat(1); //The depth level specifying how deep a nested array structure should be flattened. Defaults to 1.
   
-  if(indexNumber == undefined){
-    indexNumber = Math.floor(Math.random() * flatmapResponseData.length) -1
+  if(obj[0].length == 0){
+    return []
   }
 
-  return flatmapResponseData[indexNumber]
+  if(indexNumber == undefined){
+    indexNumber = Math.floor(Math.random() * obj[0]['episodes'].length) -1
+  }
+
+  return obj[0]['episodes'][indexNumber]
 }
