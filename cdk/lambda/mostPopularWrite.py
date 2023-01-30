@@ -18,5 +18,6 @@ def handler(event, context):
 
     else:
         print('Failed to return correct response from API.')
+        # Could check if current file is corrupt and resend request, or try to put json file in a "good" state.
 
     

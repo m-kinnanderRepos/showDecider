@@ -45,4 +45,4 @@ pip install --target=package -r requirements.txt
 
 
 
-### When creating cdk project from scratch, you need to create the folder __pycache__ inside of the newly created folder for your lambda. If you don't, you will get an error in lambda saying showDeciderAPI does not have access to requests. *something like that.
+### When creating cdk project from scratch, you need to create the folder __pycache__ inside of the newly created folder for your lambda. If you don't, you will get an error in lambda saying mostPopularWrite does not have access to requests. *something like that.

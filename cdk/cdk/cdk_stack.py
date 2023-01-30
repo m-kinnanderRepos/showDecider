@@ -18,8 +18,8 @@ class showDeciderStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Create a layer for our lambda function to have access to third party software
-        showDecider_lambda_layer = _lambda.LayerVersion(
-               self, 'showDeciderAPILayer',
+        idkYouPick_LambdaLayer = _lambda.LayerVersion(
+               self, 'mostPopularLayer',
                code=_lambda.Code.from_asset('package'),
                compatible_runtimes=[_lambda.Runtime.PYTHON_3_7],
                description='Libraries needed from requirements.txt file',
@@ -27,21 +27,29 @@ class showDeciderStack(Stack):
            )
 
         # create PutObject Policy to write mostPopular.json to bucket
-        putObjectPolicy = iam.PolicyStatement(
+        mostPopularJsonPUT_Policy = iam.PolicyStatement(
                 actions=["s3:PutObject"],
                 resources=["arn:aws:s3:::mattk-aws-cdk-s3-demo-bucket/mostPopular.json"]
         )
 
         # Defines an AWS Lambda resource
-        my_lambda = _lambda.Function(
-            self, 'showDeciderHandler',
+        mostPopularWrite_Lambda = _lambda.Function(
+            self, 'MostPopularWriteHandler',
             runtime=_lambda.Runtime.PYTHON_3_7,
-            layers=[showDecider_lambda_layer],
+            layers=[idkYouPick_LambdaLayer],
             code=_lambda.Code.from_asset('lambda'),
-            handler='showDeciderAPI.handler',
+            handler='mostPopularWrite.handler',
             timeout=cdk.Duration.minutes(5),
-            initial_policy=[putObjectPolicy]
+            initial_policy=[mostPopularJsonPUT_Policy]
         )
+
+        # Create event rule for calling our lambda on a schedule
+        # Job will run every Sun at midnight UTC
+        mostPopularWrite_Rule = events.Rule(self, 'EverySunAt00UTCRule', 
+        schedule= events.Schedule.expression("cron(0 0 ? * Sun *)"),
+        )
+
+        mostPopularWrite_Rule.add_target(targets.LambdaFunction(mostPopularWrite_Lambda))
 
         # I can't get this to work. Take a look at the file stepsForBucketAndCodeDeploy.txt for 
         # info on setting up the Function Url for your lambda through the UI. 
@@ -51,7 +59,7 @@ class showDeciderStack(Stack):
         # )
 
         # Create Bucket
-        myBucket = s3.Bucket(self, 'MyFirstBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket',
+        idkYouPick_Bucket = s3.Bucket(self, 'idkYouPickBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket',
             public_read_access=True,
             removal_policy=cdk.RemovalPolicy.DESTROY,
             website_index_document="index.html",
@@ -59,15 +67,9 @@ class showDeciderStack(Stack):
         ) 
 
         # Write files in `../dist` to our new bucket
-        deployment = s3deploy.BucketDeployment(self, "deployStaticWebsite", 
+        idkYouPick_Deployment = s3deploy.BucketDeployment(self, "DeployidkYouPickWebsite", 
             sources=[s3deploy.Source.asset("../dist")],
-            destination_bucket=myBucket
-        )      
-
-        # Create event rule for calling our lambda on a schedule
-        # Job will run every Sun at midnight UTC
-        eventRule = events.Rule(self, 'scheduleRule', 
-        schedule= events.Schedule.expression("cron(0 0 ? * Sun *)"),
+            destination_bucket=idkYouPick_Bucket
         )
 
-        eventRule.add_target(targets.LambdaFunction(my_lambda))
+        
