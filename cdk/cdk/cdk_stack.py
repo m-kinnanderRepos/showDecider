@@ -53,10 +53,26 @@ class showDeciderStack(Stack):
 
         # I can't get this to work. Take a look at the file stepsForBucketAndCodeDeploy.txt for 
         # info on setting up the Function Url for your lambda through the UI. 
-        # my_lambda.addFunctionUrl(self, "functionrul",
+        # mostPopularWrite_Lambda.addFunctionUrl(self, "functionrul",
         #     auth_type=_lambda.FunctionUrlAuthType.NONE,
         #     allowed_origins= ['http://localhost:3000']
         # )
+
+        # create GetObject Policy to write mostPopular.json to bucket
+        mostPopularJsonGET_Policy = iam.PolicyStatement(
+                actions=["s3:GETObject"],
+                resources=["arn:aws:s3:::mattk-aws-cdk-s3-demo-bucket/mostPopular.json"]
+        )
+
+        mostPopularRead_Lambda = _lambda.Function(
+            self, 'MostPopularReadHandler',
+            runtime=_lambda.Runtime.PYTHON_3_7,
+            layers=[idkYouPick_LambdaLayer],
+            code=_lambda.Code.from_asset('lambda'),
+            handler='mostPopularRead.handler',
+            timeout=cdk.Duration.minutes(5),
+            initial_policy=[mostPopularJsonGET_Policy]
+        )
 
         # Create Bucket
         idkYouPick_Bucket = s3.Bucket(self, 'idkYouPickBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket',

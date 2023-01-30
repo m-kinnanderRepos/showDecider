@@ -64,7 +64,17 @@ html(lang='en')
                         .input-group
                             input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
                             button(type="button" class="btn btn-outline-primary" id="thisThing") Pick Episode
+                            button(type="button" class="btn btn-outline-primary" id="displayMostPopular") displayMostPopular
             .container.px-4(id="episodeTable")
+
+        // Most Popular section
+        section#popular.bg-light
+            //- .container.px-4
+            //-     .row.gx-4.justify-content-center
+            //-         .col-lg-8
+            //-             .input-group
+            //-                 input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
+            .container.px-4(id="displayMostPopularTable")
 
 
         // About section
