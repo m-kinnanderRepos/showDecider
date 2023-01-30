@@ -1,15 +1,16 @@
 from constructs import Construct
 import aws_cdk as cdk
 from aws_cdk import (
-    Duration,
     Stack,
     aws_lambda as _lambda,
     aws_s3 as s3,
     aws_iam as iam,
-    Resource,
-    CfnOutput,
-    aws_s3_deployment as s3deploy
+    aws_s3_deployment as s3deploy,
+    aws_events as events,
+    aws_events_targets as targets
 )
+from aws_solutions_constructs.aws_lambda_eventbridge import LambdaToEventbridge
+
 
 class showDeciderStack(Stack):
 
@@ -25,6 +26,12 @@ class showDeciderStack(Stack):
                layer_version_name='v1'
            )
 
+        # create PutObject Policy to write mostPopular.json to bucket
+        putObjectPolicy = iam.PolicyStatement(
+                actions=["s3:PutObject"],
+                resources=["arn:aws:s3:::mattk-aws-cdk-s3-demo-bucket/mostPopular.json"]
+        )
+
         # Defines an AWS Lambda resource
         my_lambda = _lambda.Function(
             self, 'showDeciderHandler',
@@ -32,7 +39,8 @@ class showDeciderStack(Stack):
             layers=[showDecider_lambda_layer],
             code=_lambda.Code.from_asset('lambda'),
             handler='showDeciderAPI.handler',
-            timeout=cdk.Duration.minutes(5)
+            timeout=cdk.Duration.minutes(5),
+            initial_policy=[putObjectPolicy]
         )
 
         # I can't get this to work. Take a look at the file stepsForBucketAndCodeDeploy.txt for 
@@ -42,9 +50,7 @@ class showDeciderStack(Stack):
         #     allowed_origins= ['http://localhost:3000']
         # )
 
-        
-
-
+        # Create Bucket
         myBucket = s3.Bucket(self, 'MyFirstBucket', bucket_name='mattk-aws-cdk-s3-demo-bucket',
             public_read_access=True,
             removal_policy=cdk.RemovalPolicy.DESTROY,
@@ -52,7 +58,16 @@ class showDeciderStack(Stack):
             auto_delete_objects=True
         ) 
 
+        # Write files in `../dist` to our new bucket
         deployment = s3deploy.BucketDeployment(self, "deployStaticWebsite", 
             sources=[s3deploy.Source.asset("../dist")],
             destination_bucket=myBucket
         )      
+
+        # Create event rule for calling our lambda on a schedule
+        # Job will run every Sun at midnight UTC
+        eventRule = events.Rule(self, 'scheduleRule', 
+        schedule= events.Schedule.expression("cron(0 0 ? * Sun *)"),
+        )
+
+        eventRule.add_target(targets.LambdaFunction(my_lambda))
