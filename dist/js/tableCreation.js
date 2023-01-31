@@ -74,7 +74,8 @@ export function createErrorTable() {
   const rowData = [['1', 'Try adding `the` to title and search again.'],
                   ['2', 'Try removing `the` from title and search again.'],
                   ['3', 'Make sure there are spaces between words and search again.'],
-                  ['4', 'Data for this show may not exist.']]
+                  ['4', 'If show has an apostrophe (\') try putting a space where it goes. Bob\'s Burgers -> Bob s Burgers'],
+                  ['5', 'Data for this show may not exist.']]
   const table = createTable(headerList, rowData, "myTable")
 
   tableDataDiv.innerHTML = table;
