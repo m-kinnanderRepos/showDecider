@@ -11,7 +11,7 @@ describe("tableCreation", function() {
 
     describe("When creating an empty table", function(){
       it("table should have no data", function() {
-          var createdEmptyTable = createTable([], [[]])
+          var createdEmptyTable = createTable([], [[]], 'myTable')
           var emptyTable = beginTableTheadTr + endTrTheadBeginBody + endTrTBodyTable
           expect(createdEmptyTable.replace(/\s/g, '') === emptyTable.replace(/\s/g, '')).toBe(true)
       });
@@ -19,7 +19,7 @@ describe("tableCreation", function() {
 
     describe("When creating a table with one column and one row", function(){
         it("table should have one column and one row", function() {
-            var createdOneColumnOneRow = createTable(['Header'], [['Body']])
+            var createdOneColumnOneRow = createTable(['Header'], [['Body']], 'myTable')
             var oneColumnOneRow = beginTableTheadTr + headerText + 
                 endTrTheadBeginBody + bodyText + endTrTBodyTable
             expect(createdOneColumnOneRow.replace(/\s/g, '') === oneColumnOneRow.replace(/\s/g, ''))
