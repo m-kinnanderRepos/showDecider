@@ -1,13 +1,14 @@
 export function getEpisode(responseData, indexNumber) {
-  var obj = Object.values(responseData);
-  
-  if(obj[0].length == 0){
+  // This worked on the original api endpoint. Does not work anymore. Keeping it for reference.
+  // var obj = Object.values(responseData);
+ 
+  if(responseData['tvShow'].length == 0){
     return []
   }
 
   if(indexNumber == undefined){
-    indexNumber = Math.floor(Math.random() * obj[0]['episodes'].length) -1
+    indexNumber = Math.floor(Math.random() * responseData['tvShow']['episodes'].length) -1
   }
 
-  return obj[0]['episodes'][indexNumber]
+  return responseData['tvShow']['episodes'][indexNumber]
 }
