@@ -10,6 +10,10 @@ html {
     scroll-padding-top: 3.5rem;
 }
 
+body {
+    background-color: white;
+}
+
 // Header padding accounts for the height of the navbar
 header {
     padding-top: 6rem + 3.5rem;
@@ -20,4 +24,45 @@ header {
 section {
     padding-top: 9rem;
     padding-bottom: 9rem;
+}
+
+.image {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 90%;
+    position: relative;
+}
+
+.section.container {
+    width: 1170px;
+    padding-right: 2em;
+    position: relative;
+}
+
+.grid {
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+}
+
+.list-item {
+    padding: 0;
+    box-shadow: 0 5px 10px gray;
+    height: 330px;
+    width: 18%;
+    margin: 2% 1%;
+}
+
+.list-item .name {
+    padding: 0.5em;
+    font-size: 14px;
+    color: black;
+    width: 100%;
+    text-align: center;
 }

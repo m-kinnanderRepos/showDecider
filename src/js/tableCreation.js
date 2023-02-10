@@ -44,25 +44,6 @@ export function createTableWithEpisode(episodeInfo) {
     tableDataDiv.innerHTML = table;
   }
 
-export function createTableMostPopular(mostPopularInfo) {
-  let oldTable = document.getElementById("innerPopularTable")
-  if(oldTable) oldTable.parentNode.removeChild(oldTable)
-
-  let tableDataDiv = document.getElementById("displayMostPopularTable");
-
-  const headerList = ['Name', 'PermaLink', 'ImageURL']
-  const rowData = []
-
-  // const total = mostPopularInfo['tv_shows'][0]['name']
-  // console.log(`the name of first tv show is ${total} \n`)
-
-  for (let i = 0; i < mostPopularInfo['tv_shows'].length; i++) {
-    rowData.push([mostPopularInfo['tv_shows'][i]['name'], mostPopularInfo['tv_shows'][i]['permalink'], mostPopularInfo['tv_shows'][i]['image_thumbnail_path']])
-  }
-
-  const table = createTable(headerList, rowData, "innerPopularTable")
-  tableDataDiv.innerHTML = table;
-}
 
 export function createErrorTable() {
   let oldTable = document.getElementById("myTable")

@@ -2,7 +2,7 @@
 // Scripts
 //
 import {getEpisode} from '/js/getEpisodeFromJSON.js'
-import {createTableWithEpisode, createErrorTable, createUnknownDataTable, createTableMostPopular} from '/js/tableCreation.js'
+import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from '/js/tableCreation.js'
 
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
@@ -60,29 +60,6 @@ function getShow(nameOfShow) {
     })
     .catch((err) => console.error(err));
 }
-
-
-const popular = document.getElementById("displayMostPopular");
-
-popular.addEventListener('click', event => {
-  displayMostPopular();
-})
-
-function displayMostPopular() {
-  console.log('we in displayMostPopular')
-  fetch("https://pw4ldh7reaecsubpecfayc2frm0nawbm.lambda-url.us-east-2.on.aws/")
-  .then((response) => response.json())
-  .then((response) => {
-    // response = JSON.parse(response)
-    // console.log(`type of this response is ${typeof response}`)
-    // console.log(response)
-    // console.log('Dont need to print whole reponse now \n')
-    createTableMostPopular(response)
-  })
-}
-
-
-
 
 
 export var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',

@@ -30,7 +30,7 @@ html(lang='en')
         link(href='css/styles.css', rel='stylesheet')
         script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
-    body#page-top
+    body#page-top.body
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
             .container.px-4
@@ -49,7 +49,7 @@ html(lang='en')
                             a.nav-link(href='#newRESTAPI') New REST API
 
         // Header
-        header.bg-primary.bg-gradient.text-white
+        header.bg-primary.bg-gradient.text-white.section.container
             .container.px-4.text-center
                 h1.fw-bolder Welcome to Show Decider
                 p.lead Type in what show you're watching, and we will pick an episode for you to watch!
@@ -57,28 +57,24 @@ html(lang='en')
 
 
         // Service section
-        section#service.bg-light
+        section#service.bg-light.section.container
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
                         .input-group
                             input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
                             button(type="button" class="btn btn-outline-primary" id="thisThing") Pick Episode
-                            button(type="button" class="btn btn-outline-primary" id="displayMostPopular") displayMostPopular
             .container.px-4(id="episodeTable")
 
         // Most Popular section
-        section#popular.bg-light
-            //- .container.px-4
-            //-     .row.gx-4.justify-content-center
-            //-         .col-lg-8
-            //-             .input-group
-            //-                 input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
+        section#popular.bg-light.section.container
+            .container.px-4
+                h2 Most Popular Shows
             .container.px-4(id="displayMostPopularTable")
 
 
         // About section
-        section#about
+        section#about.section.container.bg-white
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -92,7 +88,7 @@ html(lang='en')
 
 
         // Contact section
-        section#github.bg-light
+        section#github.bg-light.section.container
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -102,7 +98,7 @@ html(lang='en')
 
         
         // New REST API
-        section#newRESTAPI
+        section#newRESTAPI.section.container.bg-white
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -129,6 +125,10 @@ html(lang='en')
                     }
                 }
             });
+
+        script(src='../js/mostPopular.js').
+        script(type="text/javascript").
+            displayMostPopular()
 
         // Footer
         footer.py-5.bg-dark

@@ -19,7 +19,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     </head>
-    <body id="page-top">
+    <body class="body" id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
@@ -36,7 +36,7 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-primary bg-gradient text-white">
+        <header class="bg-primary bg-gradient text-white section container">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Welcome to Show Decider</h1>
                 <p class="lead">Type in what show you're watching, and we will pick an episode for you to watch!</p>
@@ -44,14 +44,13 @@
             </div>
         </header>
         <!-- Service section-->
-        <section class="bg-light" id="service">
+        <section class="bg-light section container" id="service">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <div class="input-group">
                             <input class="form-control rounded typeahead" type="search" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead" />
                             <button class="btn btn-outline-primary" type="button" id="thisThing">Pick Episode</button>
-                            <button class="btn btn-outline-primary" type="button" id="displayMostPopular">displayMostPopular</button>
                         </div>
                     </div>
                 </div>
@@ -59,9 +58,12 @@
             <div class="container px-4" id="episodeTable"></div>
         </section>
         <!-- Most Popular section-->
-        <section class="bg-light" id="popular"><div class="container px-4" id="displayMostPopularTable"></div></section>
+        <section class="bg-light section container" id="popular">
+            <div class="container px-4"><h2>Most Popular Shows</h2></div>
+            <div class="container px-4" id="displayMostPopularTable"></div>
+        </section>
         <!-- About section-->
-        <section id="about">
+        <section class="section container bg-white" id="about">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
@@ -72,7 +74,7 @@
             </div>
         </section>
         <!-- Contact section-->
-        <section class="bg-light" id="github">
+        <section class="bg-light section container" id="github">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
@@ -83,7 +85,7 @@
             </div>
         </section>
         <!-- New REST API-->
-        <section id="newRESTAPI">
+        <section class="section container bg-white" id="newRESTAPI">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
@@ -112,6 +114,10 @@
                     }
                 }
             });
+        </script>
+        <script src="../js/mostPopular.js"></script>
+        <script type="text/javascript">
+            displayMostPopular();
         </script>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
