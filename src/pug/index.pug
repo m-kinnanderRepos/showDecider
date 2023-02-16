@@ -30,7 +30,7 @@ html(lang='en')
         link(href='css/styles.css', rel='stylesheet')
         script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
-    body#page-top
+    body#page-top.body
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
             .container.px-4
@@ -49,7 +49,7 @@ html(lang='en')
                             a.nav-link(href='#newRESTAPI') New REST API
 
         // Header
-        header.bg-primary.bg-gradient.text-white
+        header.bg-primary.bg-gradient.text-white.section.container
             .container.px-4.text-center
                 h1.fw-bolder Welcome to Show Decider
                 p.lead Type in what show you're watching, and we will pick an episode for you to watch!
@@ -57,7 +57,7 @@ html(lang='en')
 
 
         // Service section
-        section#service.bg-light
+        section#service.bg-light.section.container
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -66,9 +66,15 @@ html(lang='en')
                             button(type="button" class="btn btn-outline-primary" id="thisThing") Pick Episode
             .container.px-4(id="episodeTable")
 
+        // Most Popular section
+        section#popular.bg-light.section.container
+            .container.px-4
+                h2 Most Popular Shows
+            .container.px-4(id="displayMostPopularTable")
+
 
         // About section
-        section#about
+        section#about.section.container.bg-white
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -82,7 +88,7 @@ html(lang='en')
 
 
         // Contact section
-        section#github.bg-light
+        section#github.bg-light.section.container
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -92,7 +98,7 @@ html(lang='en')
 
         
         // New REST API
-        section#newRESTAPI
+        section#newRESTAPI.section.container.bg-white
             .container.px-4
                 .row.gx-4.justify-content-center
                     .col-lg-8
@@ -102,7 +108,7 @@ html(lang='en')
 
         //Scripts
         script(type="module").
-            import {theShowNames} from '../js/scripts.js'
+            import {theShowNames, displayMostPopular} from '../js/scripts.js'
             var $input = $(".typeahead");
             $input.typeahead({
                 source: theShowNames,
@@ -119,6 +125,7 @@ html(lang='en')
                     }
                 }
             });
+            displayMostPopular()
 
         // Footer
         footer.py-5.bg-dark

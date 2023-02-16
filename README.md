@@ -49,8 +49,8 @@ npm test
 * Look in the `cdk` folder for creating an s3 bucket, deploying the lambda function, and setting up for hosting via CDK.
 * I may use the data in TestData.txt, I'm not sure yet.
 
-## [epguides-api](https://rapidapi.com/frecar/api/epguides-api/)
-* api endpoint I call within my lambda function
+## [Episodate-api](https://www.episodate.com/api)
+* api endpoint I call for most popular data and episode data.
 
 ## About
 

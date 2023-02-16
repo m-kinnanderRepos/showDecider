@@ -11290,6 +11290,10 @@ html {
   scroll-padding-top: 3.5rem;
 }
 
+body {
+  background-color: white;
+}
+
 header {
   padding-top: 9.5rem;
   padding-bottom: 6rem;
@@ -11298,4 +11302,41 @@ header {
 section {
   padding-top: 9rem;
   padding-bottom: 9rem;
+}
+
+.image {
+  width: 100%;
+  height: 90%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.section.container {
+  width: 1170px;
+  padding-right: 2em;
+  position: relative;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.list-item {
+  padding: 0;
+  height: 330px;
+  width: 18%;
+  box-shadow: 0 5px 10px #0d6efd;
+  margin: 2% 1%;
+}
+
+.list-item .name {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 14px;
+  text-align: center;
+  color: black;
 }

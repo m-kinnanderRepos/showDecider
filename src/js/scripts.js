@@ -3,6 +3,7 @@
 //
 import {getEpisode} from '/js/getEpisodeFromJSON.js'
 import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from '/js/tableCreation.js'
+import {createMostPopularGrid, attachGridAfterElementById} from '/js/mostPopular.js'
 
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
@@ -38,17 +39,12 @@ button.addEventListener('click', event => {
 
 
 function getShow(nameOfShow) {
-  // console.log("in getShow")
-  // console.log(nameOfShow);
   var newName = nameOfShow.replace(/ /g,"-")
-  // console.log(newName)
   
   fetch("https://www.episodate.com/api/show-details?q=" + newName)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response)
       var episodeInfo = getEpisode(response)
-      console.log(episodeInfo)
       if (episodeInfo === undefined || episodeInfo.length == 0){
         createErrorTable()
       }
@@ -61,8 +57,14 @@ function getShow(nameOfShow) {
     .catch((err) => console.error(err));
 }
 
-
-
+export function displayMostPopular() {
+  fetch("https://sfayoajdsa2ve6u2lw4kbc6mja0gbqvj.lambda-url.us-east-2.on.aws/")
+  .then((response) => response.json())
+  .then((response) => {    
+    var grid = createMostPopularGrid(response)
+    attachGridAfterElementById(grid, 'displayMostPopularTable')
+  })
+}
 
 
 export var theShowNames = ['armedandfamous','sommerdahl','sinner','redoaks','bestyears','badbatch',
