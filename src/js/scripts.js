@@ -3,6 +3,7 @@
 //
 import {getEpisode} from '/js/getEpisodeFromJSON.js'
 import {createTableWithEpisode, createErrorTable, createUnknownDataTable} from '/js/tableCreation.js'
+import {createMostPopularGrid, attachGridAfterElementById} from '/js/mostPopular.js'
 
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
@@ -54,6 +55,15 @@ function getShow(nameOfShow) {
       
     })
     .catch((err) => console.error(err));
+}
+
+export function displayMostPopular() {
+  fetch("https://sfayoajdsa2ve6u2lw4kbc6mja0gbqvj.lambda-url.us-east-2.on.aws/")
+  .then((response) => response.json())
+  .then((response) => {    
+    var grid = createMostPopularGrid(response)
+    attachGridAfterElementById(grid, 'displayMostPopularTable')
+  })
 }
 
 

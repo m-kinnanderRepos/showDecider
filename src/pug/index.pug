@@ -108,7 +108,7 @@ html(lang='en')
 
         //Scripts
         script(type="module").
-            import {theShowNames} from '../js/scripts.js'
+            import {theShowNames, displayMostPopular} from '../js/scripts.js'
             var $input = $(".typeahead");
             $input.typeahead({
                 source: theShowNames,
@@ -125,9 +125,6 @@ html(lang='en')
                     }
                 }
             });
-
-        script(src='../js/mostPopular.js').
-        script(type="text/javascript").
             displayMostPopular()
 
         // Footer
