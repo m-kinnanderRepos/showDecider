@@ -31,12 +31,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-const button = document.getElementById("thisThing");
+const searchButton = document.getElementById("pickEpisodeButton");
+const searchInput = document.getElementById('searchInput')
 
-button.addEventListener('click', event => {
+searchButton.addEventListener('click', event => {
   getShow(document.getElementById("searchInput").value);
 });
 
+document.body.addEventListener( 'click', function ( event ) {
+  if( event.target.id == 'mostpop' ) {
+    searchInput.value=event.target.getAttribute("permalink")
+    searchInput.scrollIntoView();
+    searchButton.click()
+  };
+} );
 
 function getShow(nameOfShow) {
   var newName = nameOfShow.replace(/ /g,"-")
@@ -58,7 +66,7 @@ function getShow(nameOfShow) {
 }
 
 export function displayMostPopular() {
-  fetch("https://sfayoajdsa2ve6u2lw4kbc6mja0gbqvj.lambda-url.us-east-2.on.aws/")
+  fetch("https://7bl3r3p3r5ffk7fns4pumdwllu0gbrcu.lambda-url.us-east-2.on.aws/")
   .then((response) => response.json())
   .then((response) => {    
     var grid = createMostPopularGrid(response)
