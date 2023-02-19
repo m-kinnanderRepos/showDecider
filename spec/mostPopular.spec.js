@@ -15,8 +15,8 @@ describe("mostpopular grid", function() {
         return `<div class="name"><p>${name}</p></div>`
     }
 
-    function createImageDiv(imageUrl) {
-        return `<div class="image" style="background-image: url(&quot;${imageUrl}&quot;);"></div>`
+    function createImageDiv(permalink, imageUrl) {
+        return `<div class="image" permalink=${permalink} id="mostpop" style="background-image: url(&quot;${imageUrl}&quot;);"></div>`
     }
 
     describe("When mostPopularInfo is undefined", function(){
@@ -32,7 +32,7 @@ describe("mostpopular grid", function() {
             for(let i = 0; i < mostPopular['tv_shows'].length; i++){
                 expectedListItems = expectedListItems + beginListItem
                 expectedListItems = expectedListItems + createNameDiv(mostPopular['tv_shows'][i]['name'])
-                expectedListItems = expectedListItems + createImageDiv(mostPopular['tv_shows'][i]['image_thumbnail_path'])
+                expectedListItems = expectedListItems + createImageDiv(mostPopular['tv_shows'][i]['permalink'], mostPopular['tv_shows'][i]['image_thumbnail_path'])
                 expectedListItems = expectedListItems + endListItem
             }
             var actualListItems = createMostPopularGrid(mostPopular)

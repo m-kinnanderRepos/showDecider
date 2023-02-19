@@ -4,7 +4,8 @@ export function createMostPopularGrid(mostPopularInfo) {
     for(let i = 0; i < mostPopularInfo['tv_shows'].length; i++){
       list_items = list_items + `<div class="list-item">`
       list_items = list_items + `<div class="name"><p>${mostPopularInfo['tv_shows'][i]['name']}</p></div>`
-      list_items = list_items + `<div class="image" style="background-image: url(&quot;${mostPopularInfo['tv_shows'][i]['image_thumbnail_path']}&quot;);">`
+      list_items = list_items + `<div class="image" permalink=${mostPopularInfo['tv_shows'][i]['permalink']} id="mostpop"
+        style="background-image: url(&quot;${mostPopularInfo['tv_shows'][i]['image_thumbnail_path']}&quot;);">`
       list_items = list_items + `</div></div>`
     }
   
