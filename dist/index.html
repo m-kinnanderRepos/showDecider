@@ -91,11 +91,46 @@
                     <div class="col-lg-8">
                         <h2>New REST API</h2>
                         <p class="lead"><a href="//www.episodate.com/api" target="_blank">Episodate is the new REST API showDecider calls!</a></p>
+                        <input class="form-control" id="searchMovie" type="text" onkeyup="apiCall()" />
+                        <div class="col-lg-8" id="dafingid"></div>
                     </div>
                 </div>
             </div>
         </section>
         <!--Scripts-->
+        <script>
+            function apiCall() {
+                const searchInput = document.getElementById('searchMovie');
+                const searchMovieDiv = document.getElementById('dafingid');
+
+                var searchData = document.getElementById('searchMovie').value;
+
+                if (searchData.length >= 3) {
+                    while (document.getElementsByClassName('autocompleteResult')[0]) {
+                        document.getElementsByClassName('autocompleteResult')[0].parentNode.removeChild(document.getElementsByClassName('autocompleteResult')[0]);
+                    }
+                    var request = new XMLHttpRequest();
+                    request.open('GET', 'https://www.episodate.com/api/search?q=' + searchData + '&page=1', true);
+                    request.onload = function () {
+                        console.log(`searchData was ${searchData}`);
+                        // Begin accessing JSON data here
+                        var data = JSON.parse(this.response);
+                        if (request.status >= 200 && request.status < 400) {
+                            console.log(data['tv_shows']);
+                            var string = '';
+                            Object.keys(data['tv_shows']).map(function (key, index) {
+                                var thediv = `<div class="form-control rounded autocompleteResult"><h1>${data['tv_shows'][index]['name']}</h1></div>`;
+                                string = string + thediv;
+                            });
+                        } else {
+                            console.log('error');
+                        }
+                        searchMovieDiv.innerHTML = string;
+                    };
+                    request.send();
+                }
+            }
+        </script>
         <script type="module">
             import { theShowNames, displayMostPopular } from '../js/scripts.js';
             var $input = $('.typeahead');

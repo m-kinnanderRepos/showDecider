@@ -11340,3 +11340,8 @@ section {
   text-align: center;
   color: black;
 }
+
+.autoComplete {
+  font-size: 14px;
+  width: 1170px;
+}
