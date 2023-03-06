@@ -30,6 +30,8 @@ html(lang='en')
         link(href='css/styles.css', rel='stylesheet')
         script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js")
 
+        script(type = "text/javascript", src="../js/autoComplete.js")
+
     body#page-top.body
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
@@ -62,9 +64,11 @@ html(lang='en')
                 .row.gx-4.justify-content-center
                     .col-lg-8
                         .input-group
-                            input(type="search" class="form-control rounded typeahead" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead")
+                            input(type="text" class="form-control rounded" placeholder="Enter Show" id="searchInput" onkeyup='apiCall()')
                             button(type="button" class="btn btn-outline-primary" id="pickEpisodeButton") Pick Episode
-            .container.px-4(id="episodeTable")
+                        #inputResultDiv.row.px-4.justify-content-center
+            
+            
 
         // Most Popular section
         section#popular.bg-light.section.container
@@ -105,60 +109,11 @@ html(lang='en')
                         h2 New REST API
                         p.lead
                             a(href='//www.episodate.com/api' target="_blank") Episodate is the new REST API showDecider calls!
-                        input#searchMovie.form-control(type='text' onkeyup='apiCall()')
-                        #dafingid.col-lg-8
 
         //Scripts
-        script.
-            function apiCall(){
-                const searchInput = document.getElementById("searchMovie");
-                const searchMovieDiv = document.getElementById('dafingid')
-                
-                var searchData = document.getElementById("searchMovie").value;
-
-                if (searchData.length >= 3 ) {
-                    while (document.getElementsByClassName('autocompleteResult')[0]) {
-                        document.getElementsByClassName('autocompleteResult')[0].parentNode.removeChild(document.getElementsByClassName('autocompleteResult')[0]);
-                    }
-                    var request = new XMLHttpRequest();
-                    request.open('GET', 'https://www.episodate.com/api/search?q=' + searchData + '&page=1', true);
-                    request.onload = function () {
-                        console.log(`searchData was ${searchData}`)
-                        // Begin accessing JSON data here
-                        var data = JSON.parse(this.response);
-                        if (request.status >= 200 && request.status < 400) {
-                            console.log(data['tv_shows']);
-                            var string = ''
-                            Object.keys(data['tv_shows']).map(function(key, index) {
-                                var thediv = `<div class="form-control rounded autocompleteResult"><h1>${data['tv_shows'][index]['name']}</h1></div>`
-                                string = string + thediv
-                            });
-                        } else {
-                            console.log('error');
-                        }
-                        searchMovieDiv.innerHTML = string
-                    };
-                    request.send();
-                }
-            }
         script(type="module").
-            import {theShowNames, displayMostPopular} from '../js/scripts.js'
-            var $input = $(".typeahead");
-            $input.typeahead({
-                source: theShowNames,
-                autoSelect: true,
-            });
-
-            $input.change(function () {
-                var current = $input.typeahead("getActive");
-                var matches = [];
-
-                if (current) {
-                    if (current.name == $input.val()) {
-                        matches.push(current.name);
-                    }
-                }
-            });
+            import {displayMostPopular} from '../js/scripts.js'
+            
             displayMostPopular()
 
         // Footer

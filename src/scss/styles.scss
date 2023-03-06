@@ -69,6 +69,15 @@ section {
 
 
 .autoComplete {
-    font-size: 14px;
+    font-size: 12px;
     width: 1170px;
+}
+
+.autocompleteResult{
+    cursor: pointer;
+}
+
+.autoCompleteText {
+    font-size: small;
+    cursor: pointer;
 }

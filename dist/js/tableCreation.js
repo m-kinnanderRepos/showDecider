@@ -35,7 +35,7 @@ export function createTableWithEpisode(episodeInfo) {
     let oldTable = document.getElementById("myTable")
     if(oldTable) oldTable.parentNode.removeChild(oldTable)
   
-    let tableDataDiv = document.getElementById("episodeTable");
+    let tableDataDiv = document.getElementById("inputResultDiv");
   
     const headerList = ['Title', 'Season', 'Episode']
     const rowData = [[episodeInfo['name'], episodeInfo['season'], episodeInfo['episode']]]
@@ -49,7 +49,7 @@ export function createErrorTable() {
   let oldTable = document.getElementById("myTable")
   if(oldTable) oldTable.parentNode.removeChild(oldTable)
 
-  let tableDataDiv = document.getElementById("episodeTable");
+  let tableDataDiv = document.getElementById("inputResultDiv");
 
   const headerList = ['', 'Show Data Not Found']
   const rowData = [['1', 'Try adding `the` to title and search again.'],
@@ -66,7 +66,7 @@ export function createUnknownDataTable() {
   let oldTable = document.getElementById("myTable")
   if(oldTable) oldTable.parentNode.removeChild(oldTable)
 
-  let tableDataDiv = document.getElementById("episodeTable");
+  let tableDataDiv = document.getElementById("inputResultDiv");
 
   const headerList = ['', 'Error with Show Data']
   const rowData = [['1', 'The show was found and data returned, but it doesn\'t have the expected formate.']]
