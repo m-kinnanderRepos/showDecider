@@ -18,6 +18,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+        <script type="text/javascript" src="../js/autoComplete.js"></script>
     </head>
     <body class="body" id="page-top">
         <!-- Navigation-->
@@ -49,13 +50,13 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <div class="input-group">
-                            <input class="form-control rounded typeahead" type="search" placeholder="Enter Show" aria-label="Search" aria-describedby="search-addon" id="searchInput" data-provide="typeahead" />
+                            <input class="form-control rounded" type="text" placeholder="Enter Show" id="searchInput" onkeyup="apiCall()" />
                             <button class="btn btn-outline-primary" type="button" id="pickEpisodeButton">Pick Episode</button>
                         </div>
+                        <div class="row px-4 justify-content-center" id="inputResultDiv"></div>
                     </div>
                 </div>
             </div>
-            <div class="container px-4" id="episodeTable"></div>
         </section>
         <!-- Most Popular section-->
         <section class="bg-light section container" id="popular">
@@ -97,23 +98,8 @@
         </section>
         <!--Scripts-->
         <script type="module">
-            import { theShowNames, displayMostPopular } from '../js/scripts.js';
-            var $input = $('.typeahead');
-            $input.typeahead({
-                source: theShowNames,
-                autoSelect: true,
-            });
+            import { displayMostPopular } from '../js/scripts.js';
 
-            $input.change(function () {
-                var current = $input.typeahead('getActive');
-                var matches = [];
-
-                if (current) {
-                    if (current.name == $input.val()) {
-                        matches.push(current.name);
-                    }
-                }
-            });
             displayMostPopular();
         </script>
         <!-- Footer-->
