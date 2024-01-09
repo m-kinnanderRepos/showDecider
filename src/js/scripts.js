@@ -53,28 +53,86 @@ document.body.addEventListener( 'click', function ( event ) {
 
 function getShow(nameOfShow) {
   var newName = nameOfShow.replace(/ /g,"-")
+  const show = localStorage.getItem(newName)
+
+  if (show)
+  {
+    const expired = (new Date()).getTime() > JSON.parse(show).expDate
+    if (expired){
+      callShowApiAndSetData(newName)
+    }
+    else{
+      setShowGrid(JSON.parse(show).data)
+    }
+  }
+  else {
+    callShowApiAndSetData(newName)
+  }
   
-  fetch("https://www.episodate.com/api/show-details?q=" + newName)
-    .then((response) => response.json())
-    .then((response) => {
-      var episodeInfo = getEpisode(response)
-      if (episodeInfo === undefined || episodeInfo.length == 0){
-        createErrorTable()
-      }
-      else if (("name" in episodeInfo) && ("season" in episodeInfo) && ("episode" in episodeInfo)){
-        createTableWithEpisode(episodeInfo)
-      }
-      else createUnknownDataTable()
-      
-    })
-    .catch((err) => console.error(err));
+  
+}
+
+function callShowApiAndSetData(showName){
+  fetch("https://www.episodate.com/api/show-details?q=" + showName)
+  .then((response) => response.json())
+  .then((response) => {
+    setShowGrid(response)
+    const saveData = {'tvShow': {'episodes': response['tvShow']['episodes']}}
+    cacheData(showName, saveData, 30)
+    
+  })
+  .catch((err) => console.error(err));
+}
+
+function setShowGrid(data){
+  var episodeInfo = getEpisode(data)
+  if (episodeInfo === undefined || episodeInfo.length == 0){
+    createErrorTable()
+  }
+  else if (("name" in episodeInfo) && ("season" in episodeInfo) && ("episode" in episodeInfo)){
+    createTableWithEpisode(episodeInfo)
+  }
+  else createUnknownDataTable()
 }
 
 export function displayMostPopular() {
+  const mostPopular = localStorage.getItem('most-popular')
+
+  if (mostPopular)
+  {
+    const expired = (new Date()).getTime() > JSON.parse(mostPopular).expDate
+    if (expired){
+      callMostPopularAndSetData()
+    }
+    else{
+      setMostPopularGrid(JSON.parse(mostPopular).data)
+    }
+  }
+  else {
+    callMostPopularAndSetData()
+  }
+  
+}
+
+function callMostPopularAndSetData(){
   fetch("https://7bl3r3p3r5ffk7fns4pumdwllu0gbrcu.lambda-url.us-east-2.on.aws/")
   .then((response) => response.json())
-  .then((response) => {    
-    var grid = createMostPopularGrid(response)
-    attachGridAfterElementById(grid, 'displayMostPopularTable')
+  .then((response) => {   
+    setMostPopularGrid(response)
+    cacheData('most-popular', response, 7)
   })
+}
+
+function setMostPopularGrid(data){
+  var grid = createMostPopularGrid(data)
+  attachGridAfterElementById(grid, 'displayMostPopularTable')
+}
+
+function cacheData(key, data, duration){
+  const expDate = new Date().setDate(new Date().getDate() + duration)
+
+  localStorage.setItem(key, JSON.stringify({
+    data: data,
+    expDate: expDate
+  }))
 }
